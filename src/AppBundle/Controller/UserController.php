@@ -15,7 +15,7 @@ use AppBundle\Entity\User;
 class UserController extends FOSRestController{
 
     /**
-     * @Rest\Get("/user")
+     * @Rest\Get("/user", name="all_users")
      */
     public function getAction()
     {
