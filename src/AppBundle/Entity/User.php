@@ -4,12 +4,14 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * User
  *
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
+ * @UniqueEntity("email", message="Cette adresse email est déjà utilisée!")
  * @ORM\Table(name="user",
  *      uniqueConstraints={@ORM\UniqueConstraint(name="user_email_unique",columns={"email"})}
  * )
@@ -223,6 +225,9 @@ class User
         return $this;
     }
 
+    /** Increment the score +1
+     * @return User
+     */
     public function incrementScore(){
         $this->score++;
         return $this;
