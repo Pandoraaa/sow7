@@ -223,6 +223,10 @@ class User
         return $this;
     }
 
+    public function incrementScore(){
+        $this->score++;
+        return $this;
+    }
     /**
      * Get score
      *

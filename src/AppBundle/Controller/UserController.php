@@ -88,11 +88,16 @@ class UserController extends FOSRestController{
         }
     }
 
-/*  /**
-     * @Rest\Post("/user/{id}/vote")
+    /**
+     * @Rest\Put("/user/{id}/vote")
      */
-    /*public function voteAction($id){
+    public function voteAction($id){
         // find a user and update his score to +1
-        $vote = $this->getDoctrine()->getRepository(User::class)->findOneById($id)
-    }*/
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository(User::class)->findOneById($id);
+        $user->incrementScore();
+        $em->flush();
+        return $user;
+
+    }
 }
