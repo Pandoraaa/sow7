@@ -3,12 +3,16 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
  *
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
+ * @ORM\Table(name="user",
+ *      uniqueConstraints={@ORM\UniqueConstraint(name="user_email_unique",columns={"email"})}
+ * )
  */
 class User
 {
@@ -44,13 +48,20 @@ class User
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
+     *
+     * @Assert\Email(
+     *     message = "L'email'{{ value }}' n'est pas valide.",
+     *     checkMX = true
+     * )
      */
+
     private $email;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="picture", type="string", length=255)
+     * @ORM\Column(name="picture", type="string", length=255, nullable=true)
+     *
      */
     private $picture;
 

@@ -1,6 +1,8 @@
 <?php
 namespace AppBundle\Controller;
 
+use AppBundle\Form\UserType;
+use AppBundle\Services\FileUploader;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use FOS\RestBundle\Controller\Annotations as Rest;
@@ -37,11 +39,11 @@ class UserController extends FOSRestController{
     }
 
     /**
-     * @Rest\Post("/user/")
+     * @Rest\Post("/user")
      */
-    public function postAction(Request $request)
+    public function postAction(Request $request, FileUploader $fileUploader)
     {
-        $data = new User;
+        /*$data = new User;
         $name = $request->get('name');
         $firstName = $request->get('first_name');
         $email = $request->get('email');
@@ -57,9 +59,40 @@ class UserController extends FOSRestController{
         $data->setEmail($email);
         $data->setPicture($picture);
 
+        $file = $user->getPicture()->getName();
+        $fileName = $fileUploader->upload($file);
+        $user->getPicture()->setName($fileName);
+
         $em = $this->getDoctrine()->getManager();
         $em->persist($data);
         $em->flush();
         return new View("User Added Successfully", Response::HTTP_OK);
-    }
+    }*/
+        $user = new User();
+        $form = $this->createForm(UserType::class, $user, array('csrf_protection' => false));
+
+        $form->submit($request->request->all());
+
+
+        if ($form->isValid()) {
+            $em = $this->get('doctrine.orm.entity_manager');
+            /*$file = $user->getPicture();
+            $fileName = $fileUploader->upload($file);
+            $user->getPicture()->setName($fileName);*/
+
+            $em->persist($user);
+            $em->flush();
+            return $user;
+        } else {
+            return $form;
+        }
+    } // erreur "This form should not contain extra fields."
+
+/*  /**
+     * @Rest\Post("/user/{id}/vote")
+     */
+    /*public function voteAction($id){
+        // find a user and update his score to +1
+        $vote = $this->getDoctrine()->getRepository(User::class)->findOneById($id)
+    }*/
 }
