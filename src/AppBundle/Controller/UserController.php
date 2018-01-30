@@ -21,7 +21,7 @@ class UserController extends FOSRestController{
     {
         $restresult = $this->getDoctrine()->getRepository('AppBundle:User')->findAll();
         if ($restresult === null) {
-            return new View("there are no users exist", Response::HTTP_NOT_FOUND);
+            return new View("Booh il n'y a personne :(", Response::HTTP_NOT_FOUND);
         }
         return $restresult;
     }
@@ -33,7 +33,7 @@ class UserController extends FOSRestController{
     {
         $singleresult = $this->getDoctrine()->getRepository('AppBundle:User')->find($id);
         if ($singleresult === null) {
-            return new View("user not found", Response::HTTP_NOT_FOUND);
+            return new View("L'utilisateur n'existe pas :o", Response::HTTP_NOT_FOUND);
         }
         return $singleresult;
     }
@@ -78,7 +78,7 @@ class UserController extends FOSRestController{
             $em = $this->get('doctrine.orm.entity_manager');
             /*$file = $user->getPicture();
             $fileName = $fileUploader->upload($file);
-            $user->getPicture()->setName($fileName);*/
+            $user->setPicture($fileName);*/
 
             $em->persist($user);
             $em->flush();
@@ -86,7 +86,7 @@ class UserController extends FOSRestController{
         } else {
             return $form;
         }
-    } // erreur "This form should not contain extra fields."
+    }
 
 /*  /**
      * @Rest\Post("/user/{id}/vote")

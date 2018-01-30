@@ -51,7 +51,6 @@ class User
      *
      * @Assert\Email(
      *     message = "L'email'{{ value }}' n'est pas valide.",
-     *     checkMX = true
      * )
      */
 
