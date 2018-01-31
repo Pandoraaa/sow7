@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use FOS\RestBundle\View\View;
 use AppBundle\Entity\User;
+use Psr\Log\LoggerInterface;
 
 /**
  * Class UserController
@@ -68,6 +69,7 @@ class UserController extends FOSRestController{
         } else {
             return $form;
         }
+        
     }
 
     /**
