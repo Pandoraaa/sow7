@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
+use FOS\RestBundle\Controller\Annotations as Rest;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,7 +29,15 @@ class DefaultController extends Controller
     ));
     }
 
-
-
+//    /**
+//     * super delete button to empty user table!
+//     * @Route("/delete", name="dangeeer")
+//     */
+//    public function dangerAction(){
+//        $em = $this->getDoctrine()->getManager();
+//        $em->getRepository(User::class)->remove()
+//
+//
+//    }
 
 }

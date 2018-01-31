@@ -69,7 +69,7 @@ class UserController extends FOSRestController{
         } else {
             return $form;
         }
-        
+
     }
 
     /**
