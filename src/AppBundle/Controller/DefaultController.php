@@ -29,15 +29,15 @@ class DefaultController extends Controller
     ));
     }
 
-//    /**
-//     * super delete button to empty user table!
-//     * @Route("/delete", name="dangeeer")
-//     */
-//    public function dangerAction(){
+    /**
+     * super delete button to empty user table!
+     * @Route("/delete", name="dangeeer")
+     */
+    public function dangerAction(){
 //        $em = $this->getDoctrine()->getManager();
-//        $em->getRepository(User::class)->remove()
-//
-//
-//    }
+//        $em->getRepository(User::class)->findAll();
+
+
+    }
 
 }
